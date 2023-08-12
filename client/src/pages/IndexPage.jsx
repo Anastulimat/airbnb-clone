@@ -1,10 +1,10 @@
 import {Link} from "react-router-dom";
 import Header from "../components/Header.jsx";
 
-export default function IndexPage () {
+export default function IndexPage() {
     return (
         <div>
-
+            Index page here
         </div>
     )
 }
