@@ -1,8 +1,18 @@
 export default function Perks({selected, onChange}) {
+
+    function handleCheckBoxClick(event) {
+        const {checked, name} = event.target;
+        if (checked) {
+            onChange([...selected, name]);
+        } else {
+            onChange([...selected.filter(selectedName => selectedName !== name)]);
+        }
+    }
+
     return (
         <>
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <input type="checkbox"/>
+                <input type="checkbox" name="wifi" onChange={handleCheckBoxClick}/>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -12,7 +22,7 @@ export default function Perks({selected, onChange}) {
             </label>
 
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <input type="checkbox"/>
+                <input type="checkbox" name="parking" onChange={handleCheckBoxClick}/>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -22,7 +32,7 @@ export default function Perks({selected, onChange}) {
             </label>
 
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <input type="checkbox"/>
+                <input type="checkbox" name="tv" onChange={handleCheckBoxClick}/>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -32,7 +42,7 @@ export default function Perks({selected, onChange}) {
             </label>
 
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <input type="checkbox"/>
+                <input type="checkbox" name="kitchen" onChange={handleCheckBoxClick}/>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -42,7 +52,7 @@ export default function Perks({selected, onChange}) {
             </label>
 
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <input type="checkbox"/>
+                <input type="checkbox" name="entrance" onChange={handleCheckBoxClick}/>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -52,7 +62,7 @@ export default function Perks({selected, onChange}) {
             </label>
 
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <input type="checkbox"/>
+                <input type="checkbox" name="radio" onChange={handleCheckBoxClick}/>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                      strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
