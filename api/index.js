@@ -152,5 +152,14 @@ app.post('/places', (req, res) => {
     });
 });
 
+app.get('/places', (req, res) => {
+    const {token} = req.cookies;
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+        if (err) throw err;
+        const {id} = userData;
+        res.json(await Place.find({owner: id}));
+    });
+});
+
 
 app.listen(4000);
