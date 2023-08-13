@@ -18,6 +18,8 @@ export default function PlacesFormPage() {
     const [checkIn, setCheckIn] = useState('');
     const [checkOut, setCheckOut] = useState('');
     const [maxGuests, setMaxGuests] = useState(1);
+    const [price, setPrice] = useState(100);
+
 
     const [redirect, setRedirect] = useState(false);
 
@@ -36,6 +38,7 @@ export default function PlacesFormPage() {
             setCheckIn(data.checkIn);
             setCheckOut(data.checkOut);
             setMaxGuests(data.maxGuests);
+            setPrice(data.price);
         });
     }, [id]);
 
@@ -72,7 +75,8 @@ export default function PlacesFormPage() {
             extraInfo,
             checkIn,
             checkOut,
-            maxGuests
+            maxGuests,
+            price
         }
 
         if (id) {
@@ -138,8 +142,8 @@ export default function PlacesFormPage() {
                           rows="5">
                         </textarea>
 
-                {preInput('Check in & out times, max guests', 'Add check in and out times, remember to have some time for cleaning the room')}
-                <div className="grid gap-2 sm:grid-cols-3">
+                {preInput('Check in & out times, max guests and price', 'Add check in and out times, remember to have some time for cleaning the room')}
+                <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
                     <div>
                         <h3 className="mt-2 -mb-1">Check in time</h3>
                         <input type="text"
@@ -161,6 +165,14 @@ export default function PlacesFormPage() {
                                min="1"
                                value={maxGuests}
                                onChange={event => setMaxGuests(parseInt(event.target.value))}/>
+                    </div>
+                    <div>
+                        <h3 className="mt-2 -mb-1">Price per night</h3>
+                        <input type="number"
+                               placeholder={"1"}
+                               min="1"
+                               value={price}
+                               onChange={event => setPrice(parseInt(event.target.value))}/>
                     </div>
                 </div>
 
