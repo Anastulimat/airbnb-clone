@@ -9,6 +9,7 @@ const multer = require('multer');
 const fs = require('fs');
 
 const User = require('./models/User');
+const Place = require('./models/Place');
 
 require('dotenv').config();
 const app = express();
@@ -82,7 +83,7 @@ app.get('/profile', (req, res) => {
             if (err) throw err;
             const {name, email, _id} = await User.findById(userData.id);
             res.json({name, email, _id});
-        })
+        });
     } else {
         res.json(null);
     }
@@ -110,12 +111,45 @@ app.post('/upload', uploadPhotosMiddleware.array('photos', 100), (req, res) => {
         const {path, originalname} = req.files[i];
         const [, extension] = originalname.split('.');
         const newPath = path + '.' + extension;
-        
+
         fs.renameSync(path, newPath);
 
         uploadedFiles.push(newPath.replace('uploads', ''));
     }
     res.json(uploadedFiles);
+});
+
+
+app.post('/places', (req, res) => {
+    const {token} = req.cookies;
+    const {
+        title,
+        address,
+        addedPhotos,
+        description,
+        perks,
+        extraInfo,
+        checkIn,
+        checkOut,
+        maxGuests
+    } = req.body;
+
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+        if (err) throw err;
+        const placeDoc = await Place.create({
+            owner: userData.id,
+            title,
+            address,
+            addedPhotos,
+            description,
+            perks,
+            extraInfo,
+            checkIn,
+            checkOut,
+            maxGuests
+        });
+        res.json(placeDoc);
+    });
 });
 
 
