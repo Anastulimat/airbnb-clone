@@ -3,6 +3,7 @@ import Perks from "../components/Perks.jsx";
 import {useState} from "react";
 import axios from "axios";
 import AccountNav from "../components/AccountNav.jsx";
+import {Navigate} from "react-router-dom";
 
 export default function PlacesFormPage() {
 
@@ -15,6 +16,8 @@ export default function PlacesFormPage() {
     const [checkIn, setCheckIn] = useState('');
     const [checkOut, setCheckOut] = useState('');
     const [maxGuests, setMaxGuests] = useState(1);
+
+    const [redirect, setRedirect] = useState(false);
 
     function inputHeader(header = '') {
         return (
@@ -51,8 +54,12 @@ export default function PlacesFormPage() {
             maxGuests
         }
         await axios.post('/places', placeData);
+        setRedirect(true);
     }
 
+    if (redirect) {
+        return <Navigate to={'/account/places'}/>
+    }
 
     return (
         <div>
