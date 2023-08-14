@@ -1,8 +1,9 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {differenceInCalendarDays} from "date-fns";
 import axios from "axios";
 import {tr} from "date-fns/locale";
 import {Navigate} from "react-router-dom";
+import {UserContext} from "../contexts/UserContext.jsx";
 
 export default function BookingWidget({place}) {
     const [checkIn, setCheckIn] = useState('');
@@ -11,6 +12,8 @@ export default function BookingWidget({place}) {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [redirect, setRedirect] = useState('');
+
+    const {user} = useContext(UserContext);
 
     const [isLoading, setIsLoading] = useState(false); // State to track loading
 
@@ -29,6 +32,12 @@ export default function BookingWidget({place}) {
             return () => clearTimeout(timeout);
         }
     }, [checkIn, checkOut]);
+
+    useEffect(() => {
+        if (user) {
+            setName(user.name);
+        }
+    }, [user]);
 
     async function bookThisPlace() {
         const bookingData = {
