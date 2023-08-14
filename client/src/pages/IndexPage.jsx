@@ -14,7 +14,7 @@ export default function IndexPage() {
     }, []);
 
     return (
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8">
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-x-6 gap-y-8">
             {places.length > 0 && places.map(place => (
                 <div>
                     <div className="bg-gray-500 mb-2 rounded-2xl flex">
