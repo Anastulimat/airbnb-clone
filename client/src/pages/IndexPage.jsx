@@ -16,7 +16,7 @@ export default function IndexPage() {
     return (
         <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-x-6 gap-y-8">
             {places.length > 0 && places.map(place => (
-                <div>
+                <Link to={'place/' + place._id}>
                     <div className="bg-gray-500 mb-2 rounded-2xl flex">
                         {place.photos?.[0] && (
                             <img className="rounded-2xl object-cover aspect-square"
@@ -29,7 +29,7 @@ export default function IndexPage() {
                     <div className="mt-1">
                         <span className="font-bold">${place.price}</span> per night
                     </div>
-                </div>
+                </Link>
             ))}
         </div>
     )
